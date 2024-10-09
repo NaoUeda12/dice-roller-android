@@ -18,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.diceroller.ui.theme.DiceRollerTheme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,8 +64,24 @@ fun DiceRollerApp() {
 }
 
 @Composable
+fun StartButton(onClick: () -> Unit) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center // 中央に配置
+    ) {
+        Button(onClick = onClick) {
+            Text("始める") // 始めるボタンのテキスト
+        }
+    }
+}
+
+
+@Composable
 fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
     var result by remember { mutableStateOf(1) }
+    var isRolling by remember { mutableStateOf(false) }
+    var showStartButton by remember { mutableStateOf(true) }
+
     val imageResource = when (result) {
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
@@ -72,11 +90,31 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         5 -> R.drawable.dice_5
         else -> R.drawable.dice_6
     }
+
+
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        Spacer(modifier = Modifier.height(40.dp))
         RoundText(
             text = stringResource(R.string.title_text)
         )
-        Image(painter = painterResource(imageResource), contentDescription = result.toString())
+
+        if (showStartButton) {
+            Spacer(modifier = Modifier.height(40.dp))
+            Image(
+                painter = painterResource(imageResource),
+                contentDescription = null,
+            )
+
+            StartButton(onClick = {
+                showStartButton = false // ボタンが押されたら非表示にする
+
+            })
+        }
+
+        Image(
+            painter = painterResource(imageResource),
+            contentDescription = result.toString()
+        )
 
         Button(
             onClick = {
@@ -86,7 +124,10 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         ) {
             Text(text = stringResource(R.string.roll), fontSize = 24.sp)
         }
+
+
         Spacer(modifier = Modifier.height(12.dp))
+
         Text(
             text = stringResource(R.string.tap_button),
             fontSize = 19.sp,
@@ -96,13 +137,23 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
             )
         )
     }
+
+    if (isRolling) {
+        LaunchedEffect(isRolling) {
+            repeat(10) { // サイコロが2.5秒間(10回×300ms)回転する
+                result = (1..6).random() // ランダムなサイコロの目を表示
+                delay(250L)
+            }
+        }
+    }
+    isRolling = false // 最後に回転を終了する
 }
 
 @Composable
 fun RoundText(text: String) {
     Box(
         modifier = Modifier
-            .size(130.dp) // 円のサイズ
+            .size(150.dp) // 円のサイズ
             .background(color = colorResource(R.color.ivory), shape = CircleShape), // 円形の背景
         contentAlignment = Alignment.Center // 中央揃え
     ) {
@@ -114,14 +165,3 @@ fun RoundText(text: String) {
         )
     }
 }
-
-
-
-
-
-
-
-
-
-
-
