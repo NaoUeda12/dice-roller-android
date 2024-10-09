@@ -1,4 +1,3 @@
-
 package com.example.diceroller
 
 import android.os.Bundle
@@ -23,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,16 +47,17 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun DiceRollerApp() {
-    DiceWithButtonAndImage(modifier = Modifier
-        .fillMaxSize()
-        .wrapContentSize(Alignment.Center)
+    DiceWithButtonAndImage(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
     )
 }
 
 @Composable
 fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
-    var result by remember { mutableStateOf( 1) }
-    val imageResource = when(result) {
+    var result by remember { mutableStateOf(1) }
+    val imageResource = when (result) {
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
         3 -> R.drawable.dice_3
@@ -68,14 +69,21 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         Image(painter = painterResource(imageResource), contentDescription = result.toString())
 
         Button(
-            onClick = { result = (1..6).random()
+            onClick = {
+                result = (1..6).random()
                 println("Dice rolled: $result")
-                      },
+            },
         ) {
             Text(text = stringResource(R.string.roll), fontSize = 24.sp)
         }
         Spacer(modifier = Modifier.height(12.dp))
-        Text(text = stringResource(R.string.tap_button), fontSize = 25.sp)
+        Text(
+            text = stringResource(R.string.tap_button),
+            fontSize = 15.sp,
+            style = MaterialTheme.typography.displaySmall.copy(
+                textDecoration = TextDecoration.Underline // 下線を引く
+            )
+        )
     }
 }
 
