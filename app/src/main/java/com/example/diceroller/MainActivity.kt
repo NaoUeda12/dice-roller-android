@@ -97,11 +97,9 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         Text(
             text = stringResource(R.string.tap_button),
             fontSize = 19.sp,
-            color = colorResource(R.color.purple_200),
-            style = MaterialTheme.typography.displaySmall.copy(
-                textDecoration = TextDecoration.Underline // 下線を引く
+            color = colorResource(R.color.purple_500),
+
             )
-        )
     }
 
     if (isRolling) {
