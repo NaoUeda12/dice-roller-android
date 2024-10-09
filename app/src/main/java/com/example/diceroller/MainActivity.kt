@@ -74,6 +74,8 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         ) {
             Text(text = stringResource(R.string.roll), fontSize = 24.sp)
         }
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(text = stringResource(R.string.tap_button), fontSize = 25.sp)
     }
 }
 
