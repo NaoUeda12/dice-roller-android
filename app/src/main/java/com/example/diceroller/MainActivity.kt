@@ -4,11 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -20,9 +24,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -67,6 +73,9 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         else -> R.drawable.dice_6
     }
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        RoundText(
+            text = stringResource(R.string.title_text)
+        )
         Image(painter = painterResource(imageResource), contentDescription = result.toString())
 
         Button(
@@ -85,6 +94,23 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
             style = MaterialTheme.typography.displaySmall.copy(
                 textDecoration = TextDecoration.Underline // 下線を引く
             )
+        )
+    }
+}
+
+@Composable
+fun RoundText(text: String) {
+    Box(
+        modifier = Modifier
+            .size(130.dp) // 円のサイズ
+            .background(color = colorResource(R.color.ivory), shape = CircleShape), // 円形の背景
+        contentAlignment = Alignment.Center // 中央揃え
+    ) {
+        Text(
+            text = stringResource(R.string.title_text),
+            fontSize = 26.sp,
+            color = colorResource(R.color.purple_200),
+            fontWeight = FontWeight.Bold
         )
     }
 }

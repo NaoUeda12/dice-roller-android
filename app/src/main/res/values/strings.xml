@@ -1,4 +1,5 @@
 <resources>
     <string name="roll">Roll</string>
     <string name="tap_button">ボタンを押してサイコロを回してね!</string>
+    <string name="title_text">Dice Roller</string>>
 </resources>
