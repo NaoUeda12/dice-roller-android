@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
@@ -80,6 +81,7 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         Text(
             text = stringResource(R.string.tap_button),
             fontSize = 15.sp,
+            color = colorResource(R.color.purple_200),
             style = MaterialTheme.typography.displaySmall.copy(
                 textDecoration = TextDecoration.Underline // 下線を引く
             )
