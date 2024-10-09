@@ -79,7 +79,7 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(12.dp))
         Text(
             text = stringResource(R.string.tap_button),
-            fontSize = 15.sp,
+            fontSize = 19.sp,
             style = MaterialTheme.typography.displaySmall.copy(
                 textDecoration = TextDecoration.Underline // 下線を引く
             )
