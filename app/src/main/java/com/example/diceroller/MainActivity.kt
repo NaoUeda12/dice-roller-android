@@ -66,6 +66,12 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         else -> R.drawable.dice_6
     }
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = stringResource(R.string.title_text),
+            fontSize = 40.sp,
+
+            )
+
         Image(painter = painterResource(imageResource), contentDescription = result.toString())
 
         Button(
