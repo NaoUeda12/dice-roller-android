@@ -1,4 +1,3 @@
-
 package com.example.diceroller
 
 import android.os.Bundle
@@ -11,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
@@ -48,16 +49,17 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun DiceRollerApp() {
-    DiceWithButtonAndImage(modifier = Modifier
-        .fillMaxSize()
-        .wrapContentSize(Alignment.Center)
+    DiceWithButtonAndImage(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
     )
 }
 
 @Composable
 fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
-    var result by remember { mutableStateOf( 1) }
-    val imageResource = when(result) {
+    var result by remember { mutableStateOf(1) }
+    val imageResource = when (result) {
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
         3 -> R.drawable.dice_3
@@ -71,12 +73,21 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         Text(
             text = stringResource(R.string.tap_button),
             fontSize = 15.sp,
+            style = MaterialTheme.typography.displaySmall.copy(
+                textDecoration = TextDecoration.Underline // 下線を引く
             )
-        Spacer(modifier = Modifier.height(14.dp))
+        )
+
+        Spacer(
+            modifier = Modifier
+                .height(14.dp)
+        )
+
         Button(
-            onClick = { result = (1..6).random()
+            onClick = {
+                result = (1..6).random()
                 println("Dice rolled: $result")
-                      },
+            },
         ) {
             Text(text = stringResource(R.string.roll), fontSize = 24.sp)
         }
