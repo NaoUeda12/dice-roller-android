@@ -112,7 +112,7 @@ fun RoundText(text: String) {
     ) {
         Text(
             text = stringResource(R.string.title_text),
-            fontSize = 40.sp,
+            fontSize = 24.sp,
             color = colorResource(R.color.purple_200),
             fontWeight = FontWeight.Bold
         )
