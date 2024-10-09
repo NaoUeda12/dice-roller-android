@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -69,7 +70,10 @@ fun StartButton(onClick: () -> Unit) {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center // 中央に配置
     ) {
-        Button(onClick = onClick) {
+        Button(
+            onClick = onClick,
+            colors = ButtonDefaults.buttonColors(colorResource(R.color.purple_700))
+        ) {
             Text("始める") // 始めるボタンのテキスト
         }
     }
