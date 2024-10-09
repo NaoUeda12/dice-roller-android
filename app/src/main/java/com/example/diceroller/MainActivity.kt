@@ -20,8 +20,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -69,8 +71,11 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         Text(
             text = stringResource(R.string.title_text),
             fontSize = 40.sp,
+            color = colorResource(R.color.purple_200),
+            fontWeight = FontWeight.Bold)
 
-            )
+
+
 
         Image(painter = painterResource(imageResource), contentDescription = result.toString())
 
